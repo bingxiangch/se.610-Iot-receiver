@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:regular,bold,italic&subset=latin,latin-ext');
+.App {
+  text-align: center;
+  font-family: 'Fira Sans';
+}
+
+/* CSS for sidebar */
+.bm-item {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  color: #00173a;
+  transition: color 0.2s;
+  font-weight: 600;
+}
+
+.bm-item:hover {
+  color: white;
+}
+
+.bm-burger-button {
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 30px;
+}
+
+@media screen and (max-width: 768px)  {
+  .bm-burger-button {
+    top: 22px;
+  }
+}
+
+.bm-burger-bars {
+  background: #00173a;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+
+.bm-cross {
+  background: #00173a;
+}
+
+.bm-menu {
+  background: #80a4ff;
+  padding: 1em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-morph-shape {
+  fill: #80a4ff;
+}
+
+.bm-item-list {
+  color: #00173a;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+/* CSS for sidebar ends */

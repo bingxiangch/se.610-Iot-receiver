@@ -1,0 +1,21 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "This folder contains the database application for IoT Receiver project.",
+  "main": "createDB.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "cd .. && copy dbConfig.js iot-receiver-database-app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "egg": "^3.3.3",
+    "node-schedule": "^2.1.0",
+    "pg": "^8.8.0",
+    "pg-format": "^1.0.4",
+    "pg-tools": "^0.1.0",
+    "pgtools": "^0.3.2"
+  }
+}

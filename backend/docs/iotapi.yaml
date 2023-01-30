@@ -1,0 +1,546 @@
+openapi: 3.0.3
+info:
+  title: Iot receiver API
+  description: ""
+  version: '1.2'
+  
+tags: 
+  - name: users
+    description: User info and management.
+  - name: auth
+    description: User authentication.
+  - name: devices
+    description: Access iot devices.
+  - name: data
+    description: Data from iot devices.
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: Return a list of users
+      description: This can only be done by the logged in admin user.
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/New_User'
+        '403':
+          description: User does not have access rights to the content.
+        '404':
+          description: No users found.
+    post:
+      tags:
+        - users
+      summary: Create a new user
+      description: This can only be done by the logged in admin user.
+      requestBody:
+        description: New user created from these values.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: successful operation
+          content:
+            text/html:
+              schema:
+                type: string
+                example: 'Succesfully created new user "Matti".'
+        '400':
+          description: User creation failed.
+        '401':
+          description: Password generation failed.
+        '403':
+          description: User does not have access rights to the content
+  /users/{username}:
+    get:
+      tags:
+        - users
+      summary: Get user by username.
+      description: This can only be done by the logged in admin user.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'          
+        '400':
+          description: Invalid username.
+        '403':
+          description: User does not have access rights to the content.
+        '404':
+          description: User not found.
+    put:
+      tags:
+        - users
+      summary: Update user
+      description: This can only be done by the logged in admin user.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Data used to update an existing user. No fields are necessary and only given fields are updated.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Updated_User'
+          description: ""
+        '400':
+          description: Invalid username supplied
+        '403':
+          description: User does not have access rights to the content
+        '404':
+          description: User not found
+    delete:
+      tags:
+        - users
+      summary: Delete user.
+      description: This can only be done by the logged in admin user.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/html:
+              schema:
+                type: string
+                example: 'Succesfully deleted user "Matti".'
+        '400':
+          description: Deletion fa.
+        '403':
+          description: User does not have access rights to the content.
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Logs user into the system
+      requestBody:
+        description: Credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {
+                username: "Matti",
+                password: "12345"
+              }
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              example: {
+                accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHRpIiwicm9sZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NjYwMDU1OTIsImV4cCI6MTY2ODU5NzU5Mn0.F1DZFTe4joTd7d3mHYboaSXq_vLiuJLq60vwg7vRRv0",
+                refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHRpIiwicm9sZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NjYwMDU1OTIsImV4cCI6MTY2ODU5NzU5Mn0.F1DZFTe4joTd7d3mHYboaSXq_vLiuJLq60vwg7vRRv0",
+                accessTokenExpires: "180s",
+                refreshTokenExpires: "30d",
+              }
+        '401':
+          description: Incorrect username or password.
+  /auth/logout:
+    post:
+      tags:
+        - auth
+      summary: Logs out current logged in user session
+      requestBody:
+        description: Created user object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example: {
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHRpIiwicm9sZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NjYwMDU1OTIsImV4cCI6MTY2ODU5NzU5Mn0.F1DZFTe4joTd7d3mHYboaSXq_vLiuJLq60vwg7vRRv0
+            }
+      responses:
+        '200':
+          description: "Logout succesfull"
+        '400':
+          description: "Logout failed"
+  /auth/token:
+    post:
+      tags:
+        - auth
+      summary: Request a new access token.
+      requestBody:
+        description: Refresh token used to generate new access token
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example: {
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHRpIiwicm9sZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NjYwMDU1OTIsImV4cCI6MTY2ODU5NzU5Mn0.F1DZFTe4joTd7d3mHYboaSXq_vLiuJLq60vwg7vRRv0
+            }
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              example: {
+                accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHRpIiwicm9sZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NjYwMDU1OTIsImV4cCI6MTY2ODU5NzU5Mn0.F1DZFTe4joTd7d3mHYboaSXq_vLiuJLq60vwg7vRRv0",
+                refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHRpIiwicm9sZSI6ImFkbWluX3VzZXIiLCJpYXQiOjE2NjYwMDU1OTIsImV4cCI6MTY2ODU5NzU5Mn0.F1DZFTe4joTd7d3mHYboaSXq_vLiuJLq60vwg7vRRv0",
+                accessTokenExpires: "180s",
+                refreshTokenExpires: "30d",
+              }
+        '400':
+          description: Invalid request.
+        '403':
+          description: Invalid token.
+  /devices:
+    get:
+      tags:
+        - devices
+      summary: Get a list of all devices
+      parameters:
+        - name: pageNumber
+          in: query
+          description: Used for pagination.
+          schema:
+            type: number
+        - name: pageSize
+          in: query
+          description: Used for pagination.
+          schema:
+            type: number
+        - name: state
+          in: query
+          description: Devices are filtered by this state.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Device'
+        '400':
+          description: Invalid parameters.
+  /devices/location:
+    get:
+      tags:
+        - devices
+      summary: Get device by location
+      parameters:
+        - name: bottomLeftLat
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: topRightLat
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: bottomLeftLong
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: topRightLong
+          in: query
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'          
+        '400':
+          description: Invalid parameters.
+        '404':
+          description: Device not found.
+  /devices/{deviceId}:
+    get:
+      tags:
+        - devices
+      summary: Get device by id
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'          
+        '400':
+          description: Invalid parameters.
+        '404':
+          description: Device not found.
+  /data:
+    post:
+      tags:
+        - data
+      summary: Query data for all given ids.
+      parameters:
+        - name: startDate
+          description: ISO 8601 date. Leave empty to query data from first datapoint.
+          in: query
+          schema:
+            type: string
+        - name: endDate
+          description: ISO 8601 date. Leave empty to query data to now.
+          in: query
+          schema:
+            type: string
+        - name: timeFormat
+          description: Time aggregation scale. Valid values are minute, hour, day, week and month.
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: List of ids for devices to get data from.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {
+                deviceList: ["id1", "id2"]
+              }
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Device_Data' 
+        '400':
+          description: Invalid paramters.
+        '404':
+          description: Data not found.
+  /data/{deviceId}:
+    get:
+      tags:
+        - data
+      summary: Query data for given id from short term data.
+      parameters:
+        - name: deviceId
+          description: ""
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          description: ISO 8601 date. Leave empty to query data from first datapoint.
+          in: query
+          schema:
+            type: string
+        - name: endDate
+          description: ISO 8601 date. Leave empty to query data to now.
+          in: query
+          schema:
+            type: string
+        - name: timeFormat
+          description: Time aggregation scale. Valid values are minute, hour, day, week and month.
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device:
+                    type: string
+                    example: "asdf1234"
+                  data:
+                    type: array
+                    items: 
+                      $ref: '#/components/schemas/Device_Data'
+        '400':
+          description: Invalid device_id.
+  /data/monthly/{deviceId}:
+    get:
+      tags:
+        - data
+      summary: Query data for given id from long term data.
+      parameters:
+        - name: deviceId
+          description: ""
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          description: ISO 8601 date. Leave empty to query data from first datapoint.
+          in: query
+          schema:
+            type: string
+        - name: endDate
+          description: ISO 8601 date. Leave empty to query data to now.
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device:
+                    type: string
+                    example: "asdf1234"
+                  data:
+                    type: array
+                    items: 
+                      $ref: '#/components/schemas/Device_Data'
+        '400':
+          description: Invalid device_id.
+      
+components:
+  schemas:
+    Device:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        device_id:
+          type: string
+          example: 'asdf1234'
+        create_time:
+          type: string
+          example: '2022-10-02T19:48:19+00:00'
+        location:
+          type: object
+          example: { 
+            'lat' : 0.0000, 
+            'long' : 0.0000 
+          }
+    Device_Data:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        device_id:
+          type: string
+          example: 'asdf1234'
+        create_time:
+          type: string
+          example: '2022-10-02T19:48:19+00:00'
+        location:
+          type: object
+          example: { 
+            'lat' : 0.0000, 
+            'long' : 0.0000 
+            } 
+        temperature:
+          type: number
+          example: 15.5
+        humidity:
+          type: number
+          example: 0.87
+        light:
+          type: number
+          example: 204.2
+        voltage_solar:
+          type: number
+          example: 12.5
+        voltage_battery:
+          type: number
+          example: 15.5
+        current_output:
+          type: number
+          example: 17.1
+        switches:
+          type: object
+          example: { 
+              "plug_1" : { 
+                "state" : true, 
+                "changed" : 1664185382 
+              }, 
+              "plug_2" : { 
+                "state" : false, 
+                "changed" : 1664185382 
+              } 
+            }
+        
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Matti
+        password:
+          type: string
+          example: '12345'
+        role:
+          type: string
+          example: 'basic_user'
+    New_User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        username:
+          type: string
+          example: Matti
+        role:
+          type: string
+          example: 'basic_user'
+    Updated_User:
+      type: object
+      properties:
+        username:
+          type: string
+          example: newMatti
+        password:
+          type: string
+          example: '12345'
+        role:
+          type: string
+          example: 'basic_user'

@@ -1,0 +1,9 @@
+# Command for creating postgres docker container
+# Remember to change the password
+docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=**** -d postgres
+
+# Command for creating frontend container
+docker run --name iot-frontend -dp 3000:3000 iot-receiver-frontend-app
+
+# Command for creating backtend container
+docker run --name iot-backend -dp 4000:4000 iot-receiver-backend-app

@@ -1,0 +1,233 @@
+{
+    "devices": [
+        {
+            "id": 10762,
+            "device_id": "0183d5fe-6463-7b14-9ad6-839ffc44703e",
+            "create_time": "2022-11-30T12:54:42.664Z",
+            "location": { "lat": 62.21788929998571, "long": 26.652219652346908 },
+            "energy_solar": 217.3913043478261,
+            "lux_solar": 50000,
+            "capacity_battery": 50000,
+            "charge_battery": 32577.7777777815,
+            "output_battery": 0,
+            "voltage_battery": 48,
+            "switches": { "plug_1": ["Object"], "plug_2": ["Object"] },
+            "state": "Operational"
+        },
+        {
+            "id": 8400,
+            "device_id": "0183d5fe-042c-7d53-bf05-3c88d0639fd6",
+            "create_time": "2022-11-30T12:54:16.697Z",
+            "location": { "lat": 61.244562719985694, "long": 28.041586152346945 },
+            "energy_solar": 217.3913043478261,
+            "lux_solar": 50000,
+            "capacity_battery": 50000,
+            "charge_battery": 32415.45893720181,
+            "output_battery": 2000,
+            "voltage_battery": 48,
+            "switches": { "plug_1": ["Object"], "plug_2": ["Object"] },
+            "state": "Operational"
+        },
+        {
+            "id": 8407,
+            "device_id": "0183d5fe-043c-72b9-ab81-f3ea841a6702",
+            "create_time": "2022-11-30T12:54:16.813Z",
+            "location": { "lat": 61.245302119985695, "long": 28.041886152346947 },
+            "energy_solar": 217.3913043478261,
+            "lux_solar": 50000,
+            "capacity_battery": 50000,
+            "charge_battery": 32993.2367149795,
+            "output_battery": 4000,
+            "voltage_battery": 48,
+            "switches": { "plug_1": ["Object"], "plug_2": ["Object"] },
+            "state": "Operational"
+        },
+        {
+            "id": 8404,
+            "device_id": "0183d5fe-03ce-7257-b7f3-e70076328e96",
+            "create_time": "2022-11-30T12:54:16.758Z",
+            "location": { "lat": 61.23796951998569, "long": 28.038436152346943 },
+            "energy_solar": 217.3913043478261,
+            "lux_solar": 50000,
+            "capacity_battery": 50000,
+            "charge_battery": 34087.68115942379,
+            "output_battery": 4000,
+            "voltage_battery": 48,
+            "switches": { "plug_1": ["Object"], "plug_2": ["Object"] },
+            "state": "Operational"
+        }
+    ],
+    "data": {
+        "0183d5fe-6463-7b14-9ad6-839ffc44703e": 
+        [
+            {
+                "time": "2022-11-25T14:03:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 16715.419855799224
+            },
+            {
+                "time": "2022-11-25T14:04:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 16715.427102176025
+            },
+            {
+                "time": "2022-11-25T14:05:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 16715.434348552826
+            },
+            {
+                "time": "2022-11-30T12:53:00.000Z",
+                "total_output": 0,
+                "lux_avg": 50000,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 217.3913043478261,
+                "avg_charge": 32574.154589375692
+            },
+            {
+                "time": "2022-11-30T12:54:00.000Z",
+                "total_output": 0,
+                "lux_avg": 50000,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 217.3913043478261,
+                "avg_charge": 32577.7777777815
+            }
+        ],
+        "0183d5fe-042c-7d53-bf05-3c88d0639fd6": [
+            {
+                "time": "2022-11-25T14:03:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 17143.19763357582
+            },
+            {
+                "time": "2022-11-25T14:04:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 17143.20487995262
+            },
+            {
+                "time": "2022-11-25T14:05:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 17143.21212632942
+            },
+            {
+                "time": "2022-11-30T12:53:00.000Z",
+                "total_output": 2000,
+                "lux_avg": 50000,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 217.3913043478261,
+                "avg_charge": 32445.16908212933
+            },
+            {
+                "time": "2022-11-30T12:54:00.000Z",
+                "total_output": 2000,
+                "lux_avg": 50000,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 217.3913043478261,
+                "avg_charge": 32415.45893720181
+            }
+        ],
+        "0183d5fe-043c-72b9-ab81-f3ea841a6702":
+        [
+            {
+            "time": "2022-11-25T14:03:00.000Z",
+            "total_output": 0,
+            "lux_avg": 100,
+            "voltage_battery_avg": 48,
+            "solar_energy_avg": 0.43478260869565216,
+            "avg_charge": 16576.532174639262
+            },
+            {
+            "time": "2022-11-25T14:04:00.000Z",
+            "total_output": 0,
+            "lux_avg": 100,
+            "voltage_battery_avg": 48,
+            "solar_energy_avg": 0.43478260869565216,
+            "avg_charge": 16576.539421016063
+            },
+            {
+            "time": "2022-11-25T14:05:00.000Z",
+            "total_output": 0,
+            "lux_avg": 100,
+            "voltage_battery_avg": 48,
+            "solar_energy_avg": 0.43478260869565216,
+            "avg_charge": 16576.546667392864
+            },
+            {
+            "time": "2022-11-30T12:53:00.000Z",
+            "total_output": 2000,
+            "lux_avg": 50000,
+            "voltage_battery_avg": 48,
+            "solar_energy_avg": 217.3913043478261,
+            "avg_charge": 33034.057971018134
+            },
+            {
+            "time": "2022-11-30T12:54:00.000Z",
+            "total_output": 4000,
+            "lux_avg": 50000,
+            "voltage_battery_avg": 48,
+            "solar_energy_avg": 217.3913043478261,
+            "avg_charge": 32993.2367149795
+            }
+        ],
+        "0183d5fe-03ce-7257-b7f3-e70076328e96":
+        [
+            {
+                "time": "2022-11-25T14:03:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 16787.64328575214
+            },
+            {
+                "time": "2022-11-25T14:04:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 16787.65053212894
+            },
+            {
+                "time": "2022-11-25T14:05:00.000Z",
+                "total_output": 0,
+                "lux_avg": 100,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 0.43478260869565216,
+                "avg_charge": 16787.65777850574
+            },
+            {
+                "time": "2022-11-30T12:53:00.000Z",
+                "total_output": 4000,
+                "lux_avg": 50000,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 217.3913043478261,
+                "avg_charge": 34150.72463768464
+            },
+            {
+                "time": "2022-11-30T12:54:00.000Z",
+                "total_output": 4000,
+                "lux_avg": 50000,
+                "voltage_battery_avg": 48,
+                "solar_energy_avg": 217.3913043478261,
+                "avg_charge": 34087.68115942379
+            }
+        ]
+    }
+}

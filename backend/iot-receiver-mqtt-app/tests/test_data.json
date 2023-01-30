@@ -1,0 +1,16 @@
+{
+    "id": "0183d5fe-5a7e-7ca4-a6e0-5edb1eb114e8",
+    "solarpanel": { 
+        "energy": 217.3913043478261, 
+        "lux": 50000 
+    },
+    "batterypack": {
+        "capasity": 50000,
+        "charge": 40320.4106280215,
+        "output_power": 2000,
+        "voltage": 48
+    },
+    "location": { "lat": 61.98836271998571, "long": 28.092867652346897 },
+    "interface": { "switches": { "plug_1": ["Object"], "plug_2": ["Object"] } },
+    "state": "Operational"
+}

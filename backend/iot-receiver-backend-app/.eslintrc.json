@@ -1,0 +1,20 @@
+{
+    "root": true,
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "ignorePatterns": ["**/tests/**"],
+    "rules": {
+        "max-len": ["error", 80],
+        "semi": "error"
+    },
+    "noInlineConfig": false
+}
